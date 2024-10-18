@@ -1,0 +1,12 @@
+## Proyecto Laravel from scratch
+## 1. Module - The Basics
+<img src="./images/Portada" alt="Cabecera" width="1200" height="240" />
+
+1. Antes de iniciar debemos de preparar nuestro ambiente de trabajo.
+
+<img src="./images/1.png" alt="Cabecera" width="1200" height="700" />
+
+
+```bash
+mkdir database
+```
