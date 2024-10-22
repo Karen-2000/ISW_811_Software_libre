@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-
-<title>My Blog</title>
-<link rel="stylesheet" href="/app.css">
-
-<body> 
-
-<?php foreach ($posts as $post) : ?>
+<x-layout>
     <article>
-        <h1><?= $post ->title;?></h1>
-        </article>
-    <?php endforeach; ?>
-</body>
+        <h1>{{ $post->title }}</h1>
+        <div>
+            {!! $post->body !!} 
+        </div>
+    </article>
+    <a href="/">Go Back</a>
+</x-layout>
+
