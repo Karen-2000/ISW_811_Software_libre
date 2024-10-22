@@ -691,3 +691,42 @@ Y los post.blade.php:
 Al realizar los cambios se debe visualizar de la siguiente manera en el navegador:
 
 <img src="./images/27.png" alt="Cabecera" width="500" height="500" />
+
+-----------------------------------------------------
+ ## Episode 13- Collrction Sorting and Caching Refresher
+-----------------------------------------------------
+Seguidamente nos vamos a Post.php y modificamos el codigo de la siguiente manera:
+
+Modificamos el siguiente codigo:
+``` bash
+
+    public static function all()
+    {
+        return cache()->rememberForever('posts.all', function(){
+            return collect(File::files(resource_path("posts")))
+            ->map(fn ($file) => YamlFrontMatter::parseFile($file))
+            ->map( fn($document)=> new Post(
+                $document->title,
+                $document->excerpt,
+                $document->date,
+                $document->body(),
+                $document->slug
+            ));
+            ->sortByDesc('date');
+        });
+
+    }
+```
+Debe de visualizarse asi.
+Luego ingresamos a la terminal y corremos el siguiente codigo:
+
+``` bash
+vagrant@webserver:/vagrant/sites/lfts.isw811.xyz$ php artisan tinker
+
+```
+<img src="./images/28.png" alt="Cabecera" width="500" height="500" />
+
+Seguidamente creamos posts/my-fiyh-post.html
+y Comprobamos en la web, debe verse asi:
+
+<img src="./images/29.png" alt="Cabecera" width="500" height="500" />
